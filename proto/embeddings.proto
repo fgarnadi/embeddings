@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package server.embeddings;
+
+// Request message for encoding text data.
+message TextEmbeddingRequest {
+  // A list of text strings to encode.
+  repeated string texts = 1;
+}
+
+// A single embedding result, representing a vector of float values.
+message EmbeddingResult {
+  repeated float embeddings = 1;
+}
+
+// A response containing one embedding result for each input
+message EmbeddingResponse {
+  // A list of embedding results, in the same order as input.
+  repeated EmbeddingResult results = 1;
+}
+
+// The EmbeddingService provides encoding of input data into numerical
+// vector representations
+service EmbeddingService {
+  // Encodes one or more input texts into vector embeddings.
+  rpc EncodeText(TextEmbeddingRequest) returns (EmbeddingResponse);
+}
