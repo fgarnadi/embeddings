@@ -24,19 +24,19 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1b\x65mbeddings/embeddings.proto\x12\x11server.embeddings\"%\n\x14TextEmbeddingRequest\x12\r\n\x05texts\x18\x01 \x03(\t\"%\n\x0f\x45mbeddingResult\x12\x12\n\nembeddings\x18\x01 \x03(\x02\"H\n\x11\x45mbeddingResponse\x12\x33\n\x07results\x18\x01 \x03(\x0b\x32\".server.embeddings.EmbeddingResult2o\n\x10\x45mbeddingService\x12[\n\nEncodeText\x12\'.server.embeddings.TextEmbeddingRequest\x1a$.server.embeddings.EmbeddingResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1b\x65mbeddings/embeddings.proto\x12\nembeddings\"%\n\x14TextEmbeddingRequest\x12\r\n\x05texts\x18\x01 \x03(\t\"%\n\x0f\x45mbeddingResult\x12\x12\n\nembeddings\x18\x01 \x03(\x02\"A\n\x11\x45mbeddingResponse\x12,\n\x07results\x18\x01 \x03(\x0b\x32\x1b.embeddings.EmbeddingResult2a\n\x10\x45mbeddingService\x12M\n\nEncodeText\x12 .embeddings.TextEmbeddingRequest\x1a\x1d.embeddings.EmbeddingResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'embeddings.embeddings_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_TEXTEMBEDDINGREQUEST']._serialized_start=50
-  _globals['_TEXTEMBEDDINGREQUEST']._serialized_end=87
-  _globals['_EMBEDDINGRESULT']._serialized_start=89
-  _globals['_EMBEDDINGRESULT']._serialized_end=126
-  _globals['_EMBEDDINGRESPONSE']._serialized_start=128
-  _globals['_EMBEDDINGRESPONSE']._serialized_end=200
-  _globals['_EMBEDDINGSERVICE']._serialized_start=202
-  _globals['_EMBEDDINGSERVICE']._serialized_end=313
+  _globals['_TEXTEMBEDDINGREQUEST']._serialized_start=43
+  _globals['_TEXTEMBEDDINGREQUEST']._serialized_end=80
+  _globals['_EMBEDDINGRESULT']._serialized_start=82
+  _globals['_EMBEDDINGRESULT']._serialized_end=119
+  _globals['_EMBEDDINGRESPONSE']._serialized_start=121
+  _globals['_EMBEDDINGRESPONSE']._serialized_end=186
+  _globals['_EMBEDDINGSERVICE']._serialized_start=188
+  _globals['_EMBEDDINGSERVICE']._serialized_end=285
 # @@protoc_insertion_point(module_scope)

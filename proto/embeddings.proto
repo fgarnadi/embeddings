@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package server.embeddings;
+package embeddings;
 
 // Request message for encoding text data.
 message TextEmbeddingRequest {

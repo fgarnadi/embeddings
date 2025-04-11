@@ -37,7 +37,7 @@ class EmbeddingServiceStub(object):
             channel: A grpc.Channel.
         """
         self.EncodeText = channel.unary_unary(
-                '/server.embeddings.EmbeddingService/EncodeText',
+                '/embeddings.EmbeddingService/EncodeText',
                 request_serializer=embeddings_dot_embeddings__pb2.TextEmbeddingRequest.SerializeToString,
                 response_deserializer=embeddings_dot_embeddings__pb2.EmbeddingResponse.FromString,
                 _registered_method=True)
@@ -65,9 +65,9 @@ def add_EmbeddingServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'server.embeddings.EmbeddingService', rpc_method_handlers)
+            'embeddings.EmbeddingService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('server.embeddings.EmbeddingService', rpc_method_handlers)
+    server.add_registered_method_handlers('embeddings.EmbeddingService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -90,7 +90,7 @@ class EmbeddingService(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/server.embeddings.EmbeddingService/EncodeText',
+            '/embeddings.EmbeddingService/EncodeText',
             embeddings_dot_embeddings__pb2.TextEmbeddingRequest.SerializeToString,
             embeddings_dot_embeddings__pb2.EmbeddingResponse.FromString,
             options,
