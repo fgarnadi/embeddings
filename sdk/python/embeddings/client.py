@@ -1,4 +1,5 @@
 import logging
+from abc import ABC, abstractmethod
 
 import grpc
 
@@ -6,7 +7,13 @@ from . import embeddings_pb2 as pb2
 from . import embeddings_pb2_grpc as pb2_grpc
 
 
-class EmbeddingService:
+class EmbeddingService(ABC):
+    @abstractmethod
+    def encode_text(self, texts: list[str]) -> list[float]:
+        pass
+
+
+class GrpcEmbeddingClient(EmbeddingService):
     def __init__(self, host: str = "localhost", port: int = 50051):
         self.host = host
         self.port = port
@@ -18,7 +25,7 @@ class EmbeddingService:
 
         self.logger = logging.getLogger(self.__class__.__name__)
 
-    def EncodeText(self, texts: list[str]) -> list[float]:
+    def encode_text(self, texts: list[str]) -> list[float]:
         request: pb2.TextEmbeddingRequest = pb2.TextEmbeddingRequest(texts=texts)
         response: pb2.EmbeddingResponse = self.stub.EncodeText(request)
 

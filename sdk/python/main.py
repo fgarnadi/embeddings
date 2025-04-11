@@ -1,6 +1,6 @@
 import logging
 
-from embeddings import EmbeddingService
+from embeddings import EmbeddingService, GrpcEmbeddingClient
 
 logging.basicConfig(
     level=logging.INFO,
@@ -11,7 +11,7 @@ if __name__ == "__main__":
     HOST = "localhost"
     PORT = 50051
 
-    client = EmbeddingService(HOST, PORT)
+    client: EmbeddingService = GrpcEmbeddingClient(HOST, PORT)
 
     texts = [
         "hello",
@@ -21,7 +21,7 @@ if __name__ == "__main__":
         "side",
     ]
 
-    embeddings = client.EncodeText(texts)
+    embeddings = client.encode_text(texts)
 
     for e in embeddings:
         print(e)

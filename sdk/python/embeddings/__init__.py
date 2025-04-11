@@ -1,3 +1,6 @@
-from .client import EmbeddingService
+from .client import EmbeddingService, GrpcEmbeddingClient
 
-__all__ = ["EmbeddingService"]
+__all__ = [
+    "EmbeddingService",
+    "GrpcEmbeddingClient",
+]
