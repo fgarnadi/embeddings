@@ -1,16 +1,10 @@
 import logging
-from abc import ABC, abstractmethod
 
 import grpc
 
 from . import embeddings_pb2 as pb2
 from . import embeddings_pb2_grpc as pb2_grpc
-
-
-class EmbeddingService(ABC):
-    @abstractmethod
-    def encode_text(self, texts: list[str]) -> list[float]:
-        pass
+from .interface import EmbeddingService
 
 
 class GrpcEmbeddingClient(EmbeddingService):
