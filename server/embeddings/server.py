@@ -3,6 +3,7 @@ from concurrent import futures
 
 import grpc
 
+from ..models import ModelRegistry
 from . import embeddings_pb2 as pb2
 from . import embeddings_pb2_grpc as pb2_grpc
 
@@ -10,7 +11,9 @@ from . import embeddings_pb2_grpc as pb2_grpc
 class EmbeddingService(pb2_grpc.EmbeddingServiceServicer):
     """Provides methods that implement functionality of embeddings server."""
 
-    def __init__(self):
+    def __init__(self, model_registry: ModelRegistry):
+        self.model_registry = model_registry
+
         self.logger = logging.getLogger(self.__class__.__name__)
 
     def EncodeText(
@@ -20,10 +23,12 @@ class EmbeddingService(pb2_grpc.EmbeddingServiceServicer):
     ) -> pb2.EmbeddingResponse:
         self.logger.info(f"Received request: {request.texts}")
 
+        # use default model
+        model = self.model_registry.get()
+
         results = []
-        for text in request.texts:
-            emb = [float(ord(c)) for c in text]
-            results.append(pb2.EmbeddingResult(embeddings=emb))
+        for embeddings in model.encode(request.texts):
+            results.append(pb2.EmbeddingResult(embeddings=embeddings))
 
         return pb2.EmbeddingResponse(results=results)
 
