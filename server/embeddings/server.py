@@ -3,9 +3,9 @@ from concurrent import futures
 
 import grpc
 
-from ..models import ModelRegistry
 from . import embeddings_pb2 as pb2
 from . import embeddings_pb2_grpc as pb2_grpc
+from .models import ModelRegistry
 
 
 class EmbeddingService(pb2_grpc.EmbeddingServiceServicer):

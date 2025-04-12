@@ -3,6 +3,7 @@ from concurrent import futures
 from multiprocessing import cpu_count
 
 from embeddings import EmbeddingService
+from embeddings.models import ModelRegistry
 
 logging.basicConfig(
     level=logging.INFO,
@@ -10,7 +11,10 @@ logging.basicConfig(
 )
 
 if __name__ == "__main__":
+    model_registry = ModelRegistry()
+    service = EmbeddingService(model_registry)
+
     executor = futures.ThreadPoolExecutor(max_workers=cpu_count())
-    service = EmbeddingService()
     service.serve(executor)
+
     service.wait_for_termination()

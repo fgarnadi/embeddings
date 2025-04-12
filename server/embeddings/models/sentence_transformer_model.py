@@ -1,6 +1,6 @@
 from sentence_transformers import SentenceTransformer
 
-from .registry import EmbeddingModel
+from .interface import EmbeddingModel
 
 
 class SentenceTransformerModel(EmbeddingModel):
@@ -9,7 +9,11 @@ class SentenceTransformerModel(EmbeddingModel):
         self.model = SentenceTransformer(model_name)
 
     def encode(self, texts: list[str]) -> list[list[float]]:
-        return self.model.encode(texts, convert_to_numpy=True).tolist()
+        return self.model.encode(
+            texts,
+            convert_to_numpy=True,
+            show_progress_bar=False,
+        ).tolist()
 
     @property
     def model_name(self):
